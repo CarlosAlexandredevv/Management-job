@@ -39,4 +39,10 @@ public class ExceptionHandlerController {
     ErrorMessageDTO error = new ErrorMessageDTO(e.getMessage(), null);
     return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(AuthenticationException.class)
+  public ResponseEntity<ErrorMessageDTO> handleAuthenticationException(AuthenticationException e) {
+    ErrorMessageDTO error = new ErrorMessageDTO("Not possible to authenticate", null);
+    return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+  }
 }
