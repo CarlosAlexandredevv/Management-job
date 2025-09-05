@@ -1,11 +1,13 @@
 package br.com.carlosalexandredevv.management_job.modules.company.useCases;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.carlosalexandredevv.management_job.modules.company.repositories.CompanyRepository;
 import br.com.carlosalexandredevv.management_job.modules.candidate.exceptions.UserFoundException;
 import br.com.carlosalexandredevv.management_job.modules.company.entities.CompanyEntity;
 
+@Service
 public class CreateCompanyUseCase {
 
     @Autowired
