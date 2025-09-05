@@ -1,4 +1,4 @@
-package br.com.carlosalexandredevv.management_job.modules.candidate.exceptions;
+package br.com.carlosalexandredevv.management_job.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
