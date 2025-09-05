@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,21 +23,21 @@ public class JobEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotBlank
+    @NotBlank(message = "Description is required")
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "Benefits are required")
     private String benefits;
 
-    @NotBlank
+    @NotBlank(message = "Level is required")
     private String level;
 
     @ManyToOne
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private CompanyEntity companyEntity;
 
-    @Column(name = "company_id")
-    @NotBlank
+    @Column(name = "company_id", nullable = false)
+    @NotNull(message = "Company is required")
     private UUID companyId;
 
     @CreationTimestamp	
