@@ -15,6 +15,7 @@ public class CandidateController {
     @PostMapping("/") 
     public void create(@Valid @RequestBody CandidateEntity candidateEntity){
         
+        System.out.println(candidateEntity);
     }
     
 }
