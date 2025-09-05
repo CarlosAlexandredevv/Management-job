@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.carlosalexandredevv.management_job.modules.candidate.CandidateEntity;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/candidate")
 public class CandidateController {
 
-    @PostMapping("/")
-    public void create(@RequestBody CandidateEntity candidateEntity){
+    @PostMapping("/") 
+    public void create(@Valid @RequestBody CandidateEntity candidateEntity){
         
     }
     
