@@ -1,5 +1,8 @@
 package br.com.carlosalexandredevv.management_job.modules.company.useCases;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import br.com.carlosalexandredevv.management_job.exceptions.AuthenticationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +45,7 @@ public class AuthCompanyUseCase {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
         var token = JWT.create().withIssuer("management_job")
-            .withSubject(company.getId().toString()).sign(algorithm);
+            .withSubject(company.getId().toString()).withExpiresAt(Instant.now().plus(Duration.ofHours(2))).sign(algorithm);
 
         return token;
     } catch (Exception e) {
