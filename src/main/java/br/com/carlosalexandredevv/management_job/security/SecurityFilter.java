@@ -1,5 +1,4 @@
 package br.com.carlosalexandredevv.management_job.security;
-    
 import java.io.IOException;
 
 import org.springframework.stereotype.Component;
