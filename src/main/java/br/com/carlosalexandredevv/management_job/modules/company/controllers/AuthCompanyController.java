@@ -13,13 +13,13 @@ import br.com.carlosalexandredevv.management_job.modules.company.dto.AuthCompany
 import br.com.carlosalexandredevv.management_job.modules.company.useCases.AuthCompanyUseCase;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/company")
 public class AuthCompanyController {
 
   @Autowired
   private AuthCompanyUseCase authCompanyUseCase;
 
-  @PostMapping("/company")
+  @PostMapping("/auth")
   public ResponseEntity<Object> create(@RequestBody AuthCompanyDTO authCompanyDTO) throws AuthenticationException { 
       var result = authCompanyUseCase.execute(authCompanyDTO);
       return ResponseEntity.ok(result);
