@@ -18,6 +18,12 @@ import br.com.carlosalexandredevv.management_job.modules.candidate.CandidateEnti
 import br.com.carlosalexandredevv.management_job.modules.candidate.useCases.CreateCandidateUseCase;
 import br.com.carlosalexandredevv.management_job.modules.candidate.useCases.ProfileCandidateUseCase;
 import br.com.carlosalexandredevv.management_job.modules.company.entities.JobEntity;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import br.com.carlosalexandredevv.management_job.modules.candidate.useCases.ListAllJobsByFilterUseCase;
 
 
@@ -61,7 +67,16 @@ public class CandidateController {
 
   @GetMapping("/job")
   @PreAuthorize("hasRole('CANDIDATE')")
-  public List<JobEntity> findJobByFilter(@RequestParam String filter) {
-    return this.listAllJobsByFilterUseCase.execute(filter);
+  @Tag(name = "Candidate", description = "Candidate API")
+  @Operation(summary = "Find job by filter", description = "Find job by filter")
+  @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Lista de vagas filtradas", content = {
+        @Content(mediaType = "application/json", array = @ArraySchema(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = JobEntity.class)))
+    })
+  })
+  public ResponseEntity<List<JobEntity>> findJobByFilter(@RequestParam String filter) {
+    List<JobEntity> jobs = this.listAllJobsByFilterUseCase.execute(filter);
+    return ResponseEntity.ok(jobs);
   }
+  
 }
