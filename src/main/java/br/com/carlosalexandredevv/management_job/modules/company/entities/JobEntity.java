@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import org.hibernate.annotations.CreationTimestamp;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,12 +29,15 @@ public class JobEntity {
     private UUID id;
 
     @NotBlank(message = "Description is required")
+    @Schema(example = "Job description")
     private String description;
 
     @NotBlank(message = "Benefits are required")
+    @Schema(example = "Job benefits")
     private String benefits;
 
     @NotBlank(message = "Level is required")
+    @Schema(example = "Senior")
     private String level;
 
     @ManyToOne
