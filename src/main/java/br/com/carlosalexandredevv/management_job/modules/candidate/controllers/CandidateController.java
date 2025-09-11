@@ -33,6 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/candidate")
+@Tag(name = "Candidate", description = "Candidate API")
 public class CandidateController {
 
     @Autowired
@@ -45,6 +46,13 @@ public class CandidateController {
     private ListAllJobsByFilterUseCase listAllJobsByFilterUseCase;
 
     @PostMapping("/") 
+    @Operation(summary = "create candidate", description = "This function is responsible for creating a candidate")
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", content = {
+          @Content(schema = @Schema(implementation = CandidateEntity.class))
+      }),
+      @ApiResponse(responseCode = "400", description = "User already exists")
+  })
     public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
         createCandidateUseCase.execute(candidateEntity);
         return ResponseEntity.ok().body(new HashMap<String, String>() {{
@@ -54,7 +62,6 @@ public class CandidateController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('CANDIDATE')")
-    @Tag(name = "Candidate", description = "Candidate information")
     @Operation(summary = "Candidate profile", description = "This function is responsible for retrieving candidate profile information")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
@@ -77,7 +84,6 @@ public class CandidateController {
 
     @GetMapping("/job")
     @PreAuthorize("hasRole('CANDIDATE')")
-    @Tag(name = "Candidate", description = "Candidate API")
     @Operation(summary = "Find job by filter", description = "Find job by filter")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "List of filtered jobs", content = {
