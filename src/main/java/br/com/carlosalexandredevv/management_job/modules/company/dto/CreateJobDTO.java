@@ -4,7 +4,12 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class CreateJobDTO {
 
