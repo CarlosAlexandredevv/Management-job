@@ -9,5 +9,5 @@ import br.com.carlosalexandredevv.management_job.modules.company.entities.JobEnt
 
 public interface JobRepository extends JpaRepository<JobEntity, UUID> {
     List<JobEntity> findByDescriptionContaining(String title);
-    
+    List<JobEntity> findByCompanyId(UUID companyId);
 }
